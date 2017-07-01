@@ -20,7 +20,6 @@ public class Shop implements Serializable {
 
         shop.setId(id);
         shop.setName(name);
-
         return shop;
     }
 
@@ -48,7 +47,7 @@ public class Shop implements Serializable {
         return imageUrl;
     }
 
-    public Shop setImageUrl(String imageUrl) {
+    public Shop setImageUrl(@NonNull final String imageUrl) {
         this.imageUrl = imageUrl;
         return this;
     }
@@ -57,7 +56,7 @@ public class Shop implements Serializable {
         return logoUrl;
     }
 
-    public Shop setLogoUrl(String logoUrl) {
+    public Shop setLogoUrl(@NonNull final String logoUrl) {
         this.logoUrl = logoUrl;
         return this;
     }
@@ -66,7 +65,7 @@ public class Shop implements Serializable {
         return address;
     }
 
-    public Shop setAddress(String address) {
+    public Shop setAddress(@NonNull final String address) {
         this.address = address;
         return this;
     }
@@ -84,7 +83,7 @@ public class Shop implements Serializable {
         return description;
     }
 
-    public Shop setDescription(String description) {
+    public Shop setDescription(@NonNull final String description) {
         this.description = description;
         return this;
     }
@@ -93,7 +92,7 @@ public class Shop implements Serializable {
         return latitude;
     }
 
-    public Shop setLatitude(float latitude) {
+    public Shop setLatitude(@NonNull final float latitude) {
         this.latitude = latitude;
         return this;
     }
@@ -102,7 +101,7 @@ public class Shop implements Serializable {
         return longitude;
     }
 
-    public Shop setLongitude(float longitude) {
+    public Shop setLongitude(@NonNull final float longitude) {
         this.longitude = longitude;
         return this;
     }

@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/MadridShops.iml" filepath="$PROJECT_DIR$/MadridShops.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/domain/domain.iml" filepath="$PROJECT_DIR$/domain/domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kc4-android-madridshops-master.iml" filepath="$PROJECT_DIR$/kc4-android-madridshops-master.iml" />
     </modules>
   </component>
 </project>

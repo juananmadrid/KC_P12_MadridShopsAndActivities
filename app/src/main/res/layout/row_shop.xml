@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_centerVertical="true"
-        tools:text="The super mega evil shop!"
+        tools:text="Shop"
         style="@style/shop_cell_name_style" />
 
     <ImageView
