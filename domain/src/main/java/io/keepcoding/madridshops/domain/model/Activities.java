@@ -24,9 +24,9 @@ public class Activities implements ActivitiesIterable, ActivitiesUpdatable {
     }
 
 
-    // lazy getter
+    // lazy getter (para crear Lista cuando vaya a usarse, no antes)
 
-    private List<Activity> getActivity() {
+    private List<Activity> getActivities() {
         if (activities == null) {
             activities =  new LinkedList<>();
         }
@@ -35,34 +35,40 @@ public class Activities implements ActivitiesIterable, ActivitiesUpdatable {
 
 
 
-
     @Override
     public void add(Activity activity) {
-
+        getActivities().add(activity);
     }
 
     @Override
     public void delete(Activity activity) {
-
+        getActivities().remove(activity);
     }
 
     @Override
     public void update(Activity newActivity, long index) {
-
+        getActivities().set((int) index, newActivity);
     }
 
     @Override
     public long size() {
-        return 0;
+        return getActivities().size();
     }
 
     @Override
     public Activity get(long index) {
-        return null;
+        return getActivities().get((int) index);
     }
 
     @Override
-    public List<Activity> AllActivities() {
-        return null;
+    public List<Activity> allActivities() {
+        // No usamos return getActivities() para evitar que puedan añadirme
+        // activities sin pasar por método add. Creo copia inmutable de la lista
+
+        List<Activity> activityListCopy = new LinkedList<>();
+        for (Activity activity : getActivities()) {
+            activityListCopy.add(activity);
+        }
+        return activityListCopy;
     }
 }

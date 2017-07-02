@@ -6,6 +6,6 @@ public interface ActivitiesIterable {
 
     long size();
     Activity get(long index);
-    List<Activity> AllActivities();
+    List<Activity> allActivities();
 
 }

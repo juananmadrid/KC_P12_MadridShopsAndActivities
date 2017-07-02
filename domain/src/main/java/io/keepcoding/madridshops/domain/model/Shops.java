@@ -22,7 +22,7 @@ public class Shops implements ShopsIterable, ShopsUpdatable {
     public Shops() {
     }
 
-    // lazy getter
+    // lazy getter (para crear Lista cuando vaya a usarse, no antes)
 
     private List<Shop> getShops() {
         if (shops == null) {

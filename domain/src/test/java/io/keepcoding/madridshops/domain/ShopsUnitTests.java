@@ -62,4 +62,13 @@ public class ShopsUnitTests {
         assertEquals("My shop 0", sut.allShops().get(0).getName());
     }
 
+    @Test
+    public void activities_updating_one_activity_and_getting_returns_that_activity() throws Exception {
+        Shops sut = new Shops();
+
+        sut.add(Shop.of(1, "MyShop"));
+        Shop newShop = Shop.of(1, "NewShop");
+        sut.update(newShop, 0);
+        assertEquals(newShop, sut.allShops().get(0));
+    }
 }
