@@ -43,12 +43,12 @@ public class ShopDAO implements DAOReadable<Shop>, DAOWritable<Shop> {
     @Override
     public @Nullable List<Shop> query(String where, String[] whereArgs, String orderBy) {
         Cursor c = dbReadConnection.query(TABLE_SHOP, // table name
-                ALL_COLUMNS,    // columns I want to obtain
-                where,             // where
-                whereArgs,           // where args
-                orderBy,    // order by
-                null,           // group
-                null);          // having
+                ALL_COLUMNS,        // columns I want to obtain
+                where,              // where
+                whereArgs,          // where args
+                orderBy,            // order by
+                null,               // group
+                null);              // having
 
         if (c == null || c.getCount() == 0) {
             return null;

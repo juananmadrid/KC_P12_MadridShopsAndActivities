@@ -47,7 +47,7 @@ public class Activity implements Serializable {
         return imgUrl;
     }
 
-    public Activity setImgUrl(@NonNull final String imgUrl) {
+    public Activity setImgUrl(final String imgUrl) {
         this.imgUrl = imgUrl;
         return this;
     }
@@ -56,7 +56,7 @@ public class Activity implements Serializable {
         return logoUrl;
     }
 
-    public Activity setLogoUrl(@NonNull final String logoUrl) {
+    public Activity setLogoUrl(final String logoUrl) {
         this.logoUrl = logoUrl;
         return this;
     }
@@ -65,7 +65,7 @@ public class Activity implements Serializable {
         return adress;
     }
 
-    public Activity setAdress(@NonNull final String adress) {
+    public Activity setAdress(final String adress) {
         this.adress = adress;
         return this;
     }
@@ -74,7 +74,7 @@ public class Activity implements Serializable {
         return url;
     }
 
-    public Activity setUrl(@NonNull final String url) {
+    public Activity setUrl(final String url) {
         this.url = url;
         return this;
     }
@@ -83,7 +83,7 @@ public class Activity implements Serializable {
         return description;
     }
 
-    public Activity setDescription(@NonNull final String description) {
+    public Activity setDescription(final String description) {
         this.description = description;
         return this;
     }
@@ -92,7 +92,7 @@ public class Activity implements Serializable {
         return latitud;
     }
 
-    public Activity setLatitud(@NonNull final float latitud) {
+    public Activity setLatitud(final float latitud) {
         this.latitud = latitud;
         return this;
     }
@@ -101,7 +101,7 @@ public class Activity implements Serializable {
         return longitud;
     }
 
-    public Activity setLongitud(@NonNull final float longitud) {
+    public Activity setLongitud(final float longitud) {
         this.longitud = longitud;
         return this;
     }

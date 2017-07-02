@@ -2,6 +2,7 @@ package io.keepcoding.madridshops.domain.managers.db;
 
 public class DBConstants {
     public static final String TABLE_SHOP = "SHOP";
+    public static final String TABLE_ACTIVITY = "ACTIVITY";
 
     // Table field constants
     public static final String KEY_SHOP_ID = "_id";
@@ -28,6 +29,7 @@ public class DBConstants {
             KEY_SHOP_LONGITUDE
     };
 
+    // Tabla de shops
     public static final String SQL_SCRIPT_CREATE_SHOP_TABLE =
             "create table " + TABLE_SHOP
                     + "( "
@@ -42,10 +44,27 @@ public class DBConstants {
                     + KEY_SHOP_DESCRIPTION + " text "
                     + ");";
 
+    // Tabla de activities (usando la misma estructura de datos que  shops)
+    public static final String SQL_SCRIPT_CREATE_ACTIVITY_TABLE =
+            "create table " + TABLE_ACTIVITY
+                    + "( "
+                    + KEY_SHOP_ID + " integer primary key autoincrement, "
+                    + KEY_SHOP_NAME + " text not null,"
+                    + KEY_SHOP_IMAGE_URL + " text, "
+                    + KEY_SHOP_LOGO_IMAGE_URL + " text, "
+                    + KEY_SHOP_ADDRESS + " text,"
+                    + KEY_SHOP_URL + " text,"
+                    + KEY_SHOP_LATITUDE + " real,"
+                    + KEY_SHOP_LONGITUDE + " real, "
+                    + KEY_SHOP_DESCRIPTION + " text "
+                    + ");";
+
+
     public static final String DROP_DATABASE_SCRIPTS = "";
     public static final String UPDATE_DATABASE_SCRIPTS = "";
 
     public static final String[] CREATE_DATABASE_SCRIPTS = {
-            SQL_SCRIPT_CREATE_SHOP_TABLE
+            SQL_SCRIPT_CREATE_SHOP_TABLE,
+            SQL_SCRIPT_CREATE_ACTIVITY_TABLE
     };
 }

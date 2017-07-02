@@ -12,11 +12,12 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final long INVALID_ID = -1;
 
 
-    // convenience
+    // convenience constructor
     public DBHelper(Context context) {
         this(context, DATABASE_FILE_NAME, NO_CURSOR_FACTORY, DATABASE_VERSION);
     }
 
+    // constructor
     private DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
