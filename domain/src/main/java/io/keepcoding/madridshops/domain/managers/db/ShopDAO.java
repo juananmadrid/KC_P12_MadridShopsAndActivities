@@ -133,7 +133,18 @@ public class ShopDAO implements DAOReadable<Shop>, DAOWritable<Shop> {
 
     @Override
     public long update(long id, Shop element) {
-        return 0;
+        int updatedRegs = 0;
+        dbWriteConnection.beginTransaction();
+
+        try {
+            updatedRegs = dbWriteConnection.update(DBConstants.TABLE_SHOP, getContentValues(element), KEY_SHOP_ID + "=" + id, null);
+            dbWriteConnection.setTransactionSuccessful();
+
+        } finally {
+            dbWriteConnection.endTransaction();
+        }
+
+        return updatedRegs;
     }
 
     @Override

@@ -22,6 +22,7 @@ public class ActivityDAOTests {
 
     final static Context appContext = InstrumentationRegistry.getTargetContext();
 
+    // Tes del método "insert()"
     @Test
     public void given_activity_DAO_inserts_activity() throws Exception {
 
@@ -35,6 +36,7 @@ public class ActivityDAOTests {
         // assertEquals(1, id);
     }
 
+    // Tes del método "query()"
     @Test
     public void given_inserted_activities_DAO_query_all_activities() throws Exception {
 
@@ -46,6 +48,74 @@ public class ActivityDAOTests {
         assertNotNull(activities);
         assertTrue(activities.size() >= 1);
     }
+
+    // Tes del método "deleteAll()"
+    @Test
+    public void given_inserted_activities_delete_all_returns_empty_table() throws Exception {
+
+        ActivityDAO sut = new ActivityDAO(appContext);
+
+        insertActivities();
+
+        sut.deleteAll();
+
+        List<Activity> query = sut.query();
+
+        assertNull(query);
+
+    }
+
+    // Tes del método "delete(long id)"
+    @Test
+    public void given_one_inserted_activities_I_can_delete_that_activity_by_Id() throws Exception {
+
+        ActivityDAO sut = new ActivityDAO(appContext);
+
+        sut.deleteAll();
+        Activity activity = insertActivity(sut, 1, "Activity1", "address", 20, 30);
+        Activity activityQuery = sut.query(activity.getId());
+        sut.delete(activityQuery.getId());
+
+        List<Activity> query = sut.query();
+
+        assertNull(query);
+    }
+
+    // Tes del método delete(Activity element)
+    @Test
+    public void given_one_inserted_activity_I_can_delete_that_activity_by_activity() throws Exception {
+
+        ActivityDAO sut = new ActivityDAO(appContext);
+
+        sut.deleteAll();
+        Activity activity = insertActivity(sut, 1, "Activity1", "address", 20, 30);
+        Activity activityQuery = sut.query(activity.getId());
+        sut.delete(activityQuery);
+
+        List<Activity> query = sut.query();
+
+        assertNull(query);
+    }
+
+    // Tes del método update()
+    @Test
+    public void given_one_inserted_activity_I_can_update_that_activity() throws Exception {
+
+        ActivityDAO sut = new ActivityDAO(appContext);
+
+        sut.deleteAll();
+        Activity activity = insertActivity(sut, 1, "Activity1", "address", 20, 30);
+
+        Activity newActivity = Activity.of(2, "NewActivity").setAdress("newAddress");
+        sut.update(activity.getId(), newActivity);
+
+        Activity query = sut.query(activity.getId());
+
+        assertEquals(query.getName(), newActivity.getName());
+        assertNotEquals(query.getName(), activity.getName());
+
+    }
+
 
     private Activity insertActivity(ActivityDAO sut, long id, String name, String address, float latitude, float longitude) {
         Activity activity = Activity.of(id, name).

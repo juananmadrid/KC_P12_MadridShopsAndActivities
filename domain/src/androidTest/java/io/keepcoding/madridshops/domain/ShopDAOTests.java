@@ -70,6 +70,26 @@ public class ShopDAOTests {
         assertEquals(TEST_NAME, shop.getName());
     }
 
+    // Tes del método update()
+    @Test
+    public void given_one_inserted_activity_I_can_update_that_activity() throws Exception {
+
+        ShopDAO sut = new ShopDAO(appContext);
+
+        sut.deleteAll();
+        Shop activity = insertShop(sut, 1, "Activity1", "address", 20, 30);
+
+        Shop newActivity = Shop.of(2, "NewActivity").setAddress("newAddress");
+        sut.update(activity.getId(), newActivity);
+
+        Shop query = sut.query(activity.getId());
+
+        assertEquals(query.getName(), newActivity.getName());
+        assertNotEquals(query.getName(), activity.getName());
+
+    }
+
+
 
     private Shop insertShop(ShopDAO sut, long id, String name, String address, float latitude, float longitude) {
         Shop shop = Shop.of(id, name).

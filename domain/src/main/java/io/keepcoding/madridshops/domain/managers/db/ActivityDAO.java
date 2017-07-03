@@ -87,11 +87,6 @@ public class ActivityDAO implements DAOReadable<Activity>, DAOWritable<Activity>
     }
 
     @Override
-    public int numRecords() {
-        return 0;
-    }
-
-    @Override
     public long insert(@NonNull Activity element) {
         if (element == null) {
             return EMPTY_ACTIVITY;
@@ -142,26 +137,54 @@ public class ActivityDAO implements DAOReadable<Activity>, DAOWritable<Activity>
 
     @Override
     public long update(long id, Activity element) {
-        return 0;
+
+        int updatedRegs = 0;
+        dbWriteConnection.beginTransaction();
+
+        try {
+            updatedRegs = dbWriteConnection.update(DBConstants.TABLE_ACTIVITY, getContentValues(element), KEY_SHOP_ID + "=" + id, null);
+            dbWriteConnection.setTransactionSuccessful();
+
+        } finally {
+            dbWriteConnection.endTransaction();     // Graba en DB
+        }
+
+        return updatedRegs;
     }
 
     @Override
     public long delete(long id) {
-        return 0;
+        return delete(KEY_SHOP_ID + " = ?", "" + id);
     }
 
     @Override
     public long delete(Activity element) {
-        return 0;
+        return delete(element.getId());
     }
 
     @Override
     public void deleteAll() {
-
+        delete(null, null);
     }
 
     @Override
     public long delete(String where, String... whereClause) {
-        return 0;
+        int deletedRegs = 0;
+        dbWriteConnection.beginTransaction();
+        try {
+            deletedRegs = dbWriteConnection.delete(TABLE_ACTIVITY, where, whereClause);
+            dbWriteConnection.setTransactionSuccessful();
+        } finally {
+            dbWriteConnection.endTransaction();
+        }
+        return deletedRegs;
     }
+
+    @Override
+    public int numRecords() {
+        List<Activity> activityList = query();
+
+        return activityList == null ? 0 : activityList.size();
+    }
+
 }
