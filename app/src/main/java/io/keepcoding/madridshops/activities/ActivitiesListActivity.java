@@ -9,14 +9,20 @@ import io.keepcoding.madridshops.domain.interactors.GetAllActivitiesInteractorCo
 import io.keepcoding.madridshops.domain.interactors.GetAllActivitiesInteractorFakeImpl;
 import io.keepcoding.madridshops.domain.interactors.InteractorErrorCompletion;
 import io.keepcoding.madridshops.domain.model.Activities;
+import io.keepcoding.madridshops.fragments.ActivitiesFragment;
 import io.keepcoding.madridshops.navigator.Navigator;
 
 public class ActivitiesListActivity extends AppCompatActivity {
+
+    ActivitiesFragment activityFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activities_list);
+
+        activityFragment = (ActivitiesFragment) getSupportFragmentManager().findFragmentById(R.id.activity_activities__fragment_activities);
+
 
         // obtain activities list
 
@@ -26,6 +32,7 @@ public class ActivitiesListActivity extends AppCompatActivity {
                     @Override
                     public void completion(Activities activities) {
                         System.out.println("Leemos Activities");
+                        activityFragment.setActivities(activities);
                     }
                 },
                 new InteractorErrorCompletion() {

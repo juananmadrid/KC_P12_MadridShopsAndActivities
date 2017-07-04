@@ -13,7 +13,7 @@ public class GetAllActivitiesInteractorFakeImpl implements GetAllActivitiesInter
         Activities activities = new Activities();
 
         for (int i = 0; i < 20; i++) {
-            Activity activity = Activity.of(i, "Activitity" + i);
+            Activity activity = Activity.of(i, "Activitity" + i).setLogoUrl("https://previews.123rf.com/images/arnica/arnica1309/arnica130900059/22282631-Map-pointer-with-museum-icon-Stock-Vector.jpg");
             activities.add(activity);
         }
 

@@ -39,6 +39,8 @@ public class ShopsFragment extends Fragment {
         shopsRecyclerView = (RecyclerView) view.findViewById(R.id.fragment_shops__recycler_view);
         shopsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        // TODO: pass adapter
+
         return view;
     }
 
