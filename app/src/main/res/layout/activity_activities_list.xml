@@ -16,4 +16,13 @@
 
     </fragment>
 
+    <ProgressBar
+        android:id="@+id/activity_activities_list__progress_bar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="invisible"
+        />
+
 </RelativeLayout>

@@ -20,6 +20,8 @@ import butterknife.OnClick;
 import io.keepcoding.madridshops.R;
 import io.keepcoding.madridshops.domain.interactors.ClearCacheInteractor;
 import io.keepcoding.madridshops.domain.interactors.ClearCacheInteractorImpl;
+import io.keepcoding.madridshops.domain.interactors.SetAllActivitiesAreCachedInteractor;
+import io.keepcoding.madridshops.domain.interactors.SetAllActivitiesAreCachedInteractorImpl;
 import io.keepcoding.madridshops.domain.interactors.SetAllShopsAreCachedInteractor;
 import io.keepcoding.madridshops.domain.interactors.SetAllShopsAreCachedInteractorImpl;
 import io.keepcoding.madridshops.domain.managers.cache.ClearCacheManager;
@@ -129,8 +131,13 @@ public class MainActivity extends AppCompatActivity {
         clearCacheInteractor.execute(new Runnable() {
             @Override
             public void run() {
+
                 SetAllShopsAreCachedInteractor setAllShopsAreCachedInteractor = new SetAllShopsAreCachedInteractorImpl(getBaseContext());
                 setAllShopsAreCachedInteractor.execute(false);
+
+                SetAllActivitiesAreCachedInteractor setAllActivitiesAreCachedInteractor = new SetAllActivitiesAreCachedInteractorImpl(getBaseContext());
+                setAllActivitiesAreCachedInteractor.execute(false);
+
             }
         });
     }
