@@ -28,7 +28,17 @@ public class GetAllShopsManagerImpl implements NetworkManager {
 
     @Override
     public void getShopsFromServer(@NonNull final GetAllShopsManagerCompletion completion, @Nullable final ManagerErrorCompletion errorCompletion) {
+
+        final String activityListActivityName = weakContext.get().getString(R.string.activity_list_name);
+        final String shopListActivityName = weakContext.get().getString(R.string.shop_list_name);
+
         String url = weakContext.get().getString(R.string.shops_url);
+
+        if (weakContext.get().getClass().getName().toString().hashCode() == activityListActivityName.hashCode()) {
+            url = weakContext.get().getString(R.string.activities_url);
+        }
+
+
         RequestQueue queue = Volley.newRequestQueue(weakContext.get());
 
         StringRequest request = new StringRequest(

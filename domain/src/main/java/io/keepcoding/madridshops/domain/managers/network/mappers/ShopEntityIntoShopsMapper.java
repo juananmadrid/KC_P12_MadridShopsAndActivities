@@ -11,10 +11,10 @@ import io.keepcoding.madridshops.domain.model.Shops;
 public class ShopEntityIntoShopsMapper {
 
     /**
-     *
      * @param shopEntities
      * @return null is shopEntities is null or shopEntities is empty else a Shops aggregate
      */
+
     public static Shops map(final List<ShopEntity> shopEntities) {
         Shops shops = new Shops();
 

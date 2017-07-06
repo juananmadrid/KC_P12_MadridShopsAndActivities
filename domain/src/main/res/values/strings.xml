@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Domain</string>
+    <string name="activity_list_name">io.keepcoding.madridshops.activities.ActivitiesListActivity</string>
+    <string name="shop_list_name">io.keepcoding.madridshops.activities.ShopListActivity</string>
+
 </resources>

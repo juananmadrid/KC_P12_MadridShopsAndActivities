@@ -10,19 +10,21 @@ import io.keepcoding.madridshops.domain.managers.network.GetAllShopsManagerCompl
 import io.keepcoding.madridshops.domain.managers.network.ManagerErrorCompletion;
 import io.keepcoding.madridshops.domain.managers.network.NetworkManager;
 import io.keepcoding.madridshops.domain.managers.network.entities.ShopEntity;
+import io.keepcoding.madridshops.domain.managers.network.mappers.ShopEntityIntoActivitiesMapper;
 import io.keepcoding.madridshops.domain.managers.network.mappers.ShopEntityIntoShopsMapper;
+import io.keepcoding.madridshops.domain.model.Activities;
 import io.keepcoding.madridshops.domain.model.Shops;
 
-public class GetAllShopsInteractorImpl implements GetAllShopsInteractor {
+public class GetAllActivitiesInteractorImpl implements GetAllActivitiesInteractor{
+
     private NetworkManager networkManager;
 
-    public GetAllShopsInteractorImpl(@NonNull final NetworkManager networkManager) {
+    public GetAllActivitiesInteractorImpl(@NonNull final NetworkManager networkManager) {
         this.networkManager = networkManager;
     }
 
     @Override
-    public void execute(@NonNull final GetAllShopsInteractorCompletion completion,
-                        @Nullable final InteractorErrorCompletion onError) {
+    public void execute(@NonNull final GetAllActivitiesInteractorCompletion completion, @Nullable final InteractorErrorCompletion onError) {
 
         if (this.networkManager == null) {
             if (onError == null) {
@@ -37,8 +39,8 @@ public class GetAllShopsInteractorImpl implements GetAllShopsInteractor {
             public void completion(@NonNull List<ShopEntity> shopEntities) {
                 Log.d("SHOP", shopEntities.toString());
                 if (completion != null) {
-                    Shops shops = ShopEntityIntoShopsMapper.map(shopEntities);
-                    completion.completion(shops);
+                    Activities activity = ShopEntityIntoActivitiesMapper.map(shopEntities);
+                    completion.completion(activity);
                 }
             }
         }, new ManagerErrorCompletion() {
