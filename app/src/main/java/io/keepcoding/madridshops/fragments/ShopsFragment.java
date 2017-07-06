@@ -54,6 +54,7 @@ public class ShopsFragment extends Fragment {
             @Override
             public void clickedOn(@NonNull Shop shop, int position) {
                 Log.d("Click", shop.getName());
+
                 if (listener != null) {
                     ShopsFragment.this.listener.clickedOn(shop, position);
                 }

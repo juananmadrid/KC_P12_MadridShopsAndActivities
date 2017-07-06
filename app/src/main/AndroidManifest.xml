@@ -71,6 +71,8 @@
 
         <activity android:name=".activities.ActivitiesListActivity">
         </activity>
+        <activity android:name=".activities.ActivitiesDetailActivity">
+        </activity>
     </application>
 
 </manifest>
