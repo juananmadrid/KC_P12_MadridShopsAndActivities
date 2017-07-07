@@ -41,6 +41,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
         <activity
             android:name=".activities.ShopListActivity"
             android:parentActivityName=".activities.MainActivity">
@@ -48,12 +49,21 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity"/>
         </activity>
+
         <activity
             android:name=".activities.ShopDetailActivity"
             android:parentActivityName=".activities.ShopListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.ShopListActivity"/>
+        </activity>
+
+        <activity android:name=".activities.ActivitiesListActivity"
+            android:parentActivityName=".activities.MainActivity">
+        </activity>
+
+        <activity android:name=".activities.ActivitiesDetailActivity"
+            android:parentActivityName=".activities.ActivitiesListActivity">
         </activity>
 
         <!-- Google maps -->
@@ -69,10 +79,6 @@
 
         <service android:name=".services.ShopService"/>
 
-        <activity android:name=".activities.ActivitiesListActivity">
-        </activity>
-        <activity android:name=".activities.ActivitiesDetailActivity">
-        </activity>
     </application>
 
 </manifest>
