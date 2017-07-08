@@ -4,6 +4,7 @@ import android.content.Context;
 
 import java.lang.ref.WeakReference;
 
+import io.keepcoding.madridshops.domain.managers.db.ActivityDAO;
 import io.keepcoding.madridshops.domain.managers.db.ShopDAO;
 
 public class ClearCacheManagerDAOImpl implements ClearCacheManager {
@@ -16,8 +17,16 @@ public class ClearCacheManagerDAOImpl implements ClearCacheManager {
 
     @Override
     public void execute(Runnable completion) {
-        ShopDAO dao = new ShopDAO(contextWeakReference.get());
-        dao.deleteAll();
+
+        // Delete shops
+        ShopDAO shopDao = new ShopDAO(contextWeakReference.get());
+        shopDao.deleteAll();
+
+        // Delete Activities
+        ActivityDAO activityDao = new ActivityDAO(contextWeakReference.get());
+        activityDao.deleteAll();
+
         completion.run();
+
     }
 }

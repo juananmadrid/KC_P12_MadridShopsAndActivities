@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         shopsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(MainActivity.class.getCanonicalName(),"Hello");
+                Log.d(MainActivity.class.getCanonicalName(),"Hello Shops");
 
                 Navigator.navigateFromMainActivityToShopListActivity(MainActivity.this);
             }
