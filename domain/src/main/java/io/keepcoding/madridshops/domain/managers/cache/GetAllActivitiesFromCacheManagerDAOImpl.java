@@ -1,6 +1,9 @@
 package io.keepcoding.madridshops.domain.managers.cache;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
+import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 
 import java.lang.ref.WeakReference;
@@ -19,15 +22,27 @@ public class GetAllActivitiesFromCacheManagerDAOImpl implements GetAllActivities
     }
 
     @Override
-    public void execute(@NonNull GetAllActivitiesFromCacheManagerCompletion completion) {
+    public void execute(@NonNull final GetAllActivitiesFromCacheManagerCompletion completion) {
 
-        ActivityDAO dao = new ActivityDAO(contextWeakReference.get());
-        List<Activity> activityList = dao.query();
-        if (activityList == null) {
-            return;
-        }
-        Activities activities = Activities.from(activityList);
-        completion.completion(activities);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ActivityDAO dao = new ActivityDAO(contextWeakReference.get());
+                List<Activity> activityList = dao.query();
+                if (activityList == null) {
+                    return;
+                }
+                final Activities activities = Activities.from(activityList);
+
+                Handler uiHandler = new Handler(Looper.getMainLooper());
+                uiHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        completion.completion(activities);
+                    }
+                });
+            }
+        }).start();
 
     }
 

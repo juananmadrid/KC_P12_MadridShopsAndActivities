@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        shopsButton.setText(s);
+                        Log.d("Web", s);
                     }
                 });
 

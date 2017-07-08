@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.Marker;
 
 import java.util.List;
 
@@ -155,8 +156,6 @@ public class ActivitiesListActivity extends AppCompatActivity {
                 new GetAllActivitiesInteractorCompletion() {
                     @Override
                     public void completion(Activities activities) {
-                        System.out.println("Leemos Activities");
-
                         // Persist in cache
                         SaveAllActivitiesIntoCacheManager saveManager = new SaveAllActivitiesIntoCacheManagerDAOImpl(getBaseContext());
                         SaveAllActivitiesIntoCacheInteractor saveInteractor = new SaveAllActivitiesIntoCacheInteractorImpl(saveManager);
@@ -196,6 +195,17 @@ public class ActivitiesListActivity extends AppCompatActivity {
     private void putActivityPinsOnMap(Activities activities) {
         List<MapPinnable> activityPins = ActivityPin.activityPinsFromActivities(activities);
         MapUtil.addPins(activityPins, map, this);
+
+        map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                if (marker.getTag() == null || !(marker.getTag() instanceof Activity)) {
+                    return;
+                }
+                Activity activity = (Activity) marker.getTag();
+                Navigator.navigateFromActivitiesListActivityToActivityDetailActivity(ActivitiesListActivity.this, activity, 0);
+            }
+        });
 
     }
 
