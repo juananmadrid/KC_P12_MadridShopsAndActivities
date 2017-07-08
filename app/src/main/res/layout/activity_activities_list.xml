@@ -1,18 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="io.keepcoding.madridshops.activities.ActivitiesListActivity">
 
     <fragment
+        android:id="@+id/activity_activities__fragment_map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        >
+
+    </fragment>
+
+
+    <fragment
         android:id="@+id/activity_activities__fragment_activities"
         android:name="io.keepcoding.madridshops.fragments.ActivitiesFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout="@layout/fragment_activities">
+        android:layout_height="300dp"
+        tools:layout="@layout/fragment_activities"
+        android:layout_below="@id/activity_activities__fragment_map"
+        >
 
     </fragment>
 
@@ -25,4 +38,4 @@
         android:visibility="invisible"
         />
 
-</RelativeLayout>
+</LinearLayout>
