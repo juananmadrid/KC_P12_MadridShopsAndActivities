@@ -3,11 +3,16 @@ package io.keepcoding.madridshops.domain.interactors;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import java.lang.ref.WeakReference;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+
+import io.keepcoding.madridshops.domain.managers.cache.ClearCacheManager;
+import io.keepcoding.madridshops.domain.managers.cache.ClearCacheManagerDAOImpl;
 
 public class GetAllActivitiesCacheInteractorImpl implements GetAllActivitiesCacheInteractor {
 
@@ -20,9 +25,10 @@ public class GetAllActivitiesCacheInteractorImpl implements GetAllActivitiesCach
     public void execute(Runnable onAllActivitiesAreCached, Runnable onAllActivitiesAreNotCached) {
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context.get());
-        boolean activitiesSaved = preferences.getBoolean(SetAllActivitiesAreCachedInteractor.ACTIVITIES_SAVED, false);
+        Boolean activitiesSaved = preferences.getBoolean(SetAllActivitiesAreCachedInteractor.ACTIVITIES_SAVED, false);
+        String lastDateString = preferences.getString(SetAllActivitiesAreCachedInteractor.ACTIVITIES_SAVED_DATE, null);
 
-        // deleteCacheIfOneWeekHasPassed();
+        deleteCacheIfOneWeekHasPassed(lastDateString);
 
         if (activitiesSaved) {
             onAllActivitiesAreCached.run();
@@ -32,25 +38,35 @@ public class GetAllActivitiesCacheInteractorImpl implements GetAllActivitiesCach
     }
 
 
+    private void deleteCacheIfOneWeekHasPassed(String lastDateString) {
 
-    // Si fecha > 1 semana borrar cache y ejecutar onAllActivitiesAreNotCached
-    private void deleteCacheIfOneWeekHasPassed() {
-        final long MILLSECS_PER_WEEK = 7 * 24 * 60 * 60 * 1000; //Milisegundos al día
-        Date toDay = new Date(); //Fecha de hoy
+        final long MILLSECS_PER_WEEK = 7 * 24 * 60 * 60 * 1000; // Milisegundos de una semana
+        final Date toDay = new Date(); // Fecha de hoy
+        final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
-        long difference = (toDay.getTime() - toDay.getTime());  // TODO: Cambiar toDay por LastDay extraido de SharedPreferences
+        try {
+            Date lastDate = (Date) formatter.parse(lastDateString);
+            long difference = (toDay.getTime() - lastDate.getTime());
 
-        if (difference >= MILLSECS_PER_WEEK) {
-            // Borrar cache
+            if (difference > MILLSECS_PER_WEEK) {
+                ClearCacheManager clearCacheManager = new ClearCacheManagerDAOImpl(context.get());
+                ClearCacheInteractor clearCacheInteractor = new ClearCacheInteractorImpl(clearCacheManager);
+                clearCacheInteractor.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.v("ACTIVITY", "Data Base delete after a week");
+                        SetAllShopsAreCachedInteractor setAllShopsAreCachedInteractor = new SetAllShopsAreCachedInteractorImpl(context.get());
+                        setAllShopsAreCachedInteractor.execute(false);
+                    }
+                });
+            } else {
+                return;
+            }
 
-
-
-
-
-
-        } else {
-            return;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
+
 
 }
