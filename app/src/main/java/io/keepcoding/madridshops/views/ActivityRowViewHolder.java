@@ -19,6 +19,7 @@ public class ActivityRowViewHolder extends RecyclerView.ViewHolder {
 
     private TextView activityNameTextView;
     private ImageView activityLogoImageView;
+    private ImageView rowBackgroundImageView;
     WeakReference<Context> context;
 
 
@@ -29,6 +30,7 @@ public class ActivityRowViewHolder extends RecyclerView.ViewHolder {
 
         activityNameTextView = (TextView) rowActivity.findViewById(R.id.row_activity__activity_name);
         activityLogoImageView = (ImageView) rowActivity.findViewById(R.id.row_activity__activity_logo);
+        rowBackgroundImageView = (ImageView) rowActivity.findViewById(R.id.row_activity__activity_background);
     }
 
 
@@ -43,6 +45,12 @@ public class ActivityRowViewHolder extends RecyclerView.ViewHolder {
                 placeholder(R.drawable.activity_placeholder).
                 // networkPolicy(NetworkPolicy.OFFLINE).
                 into(activityLogoImageView);
+
+        Picasso.with(context.get()).
+                load(activity.getImgUrl()).
+                placeholder(R.drawable.activity_placeholder).
+                // networkPolicy(NetworkPolicy.OFFLINE).
+                        into(rowBackgroundImageView);
     }
 
 

@@ -17,6 +17,7 @@ public class ShopRowViewHolder extends RecyclerView.ViewHolder {
 
     private TextView shopNameTextView;
     private ImageView shopLogoImageView;
+    private ImageView rowBackgroundImageView;
     WeakReference<Context> context;
 
     public ShopRowViewHolder(View rowShop) {
@@ -26,6 +27,7 @@ public class ShopRowViewHolder extends RecyclerView.ViewHolder {
 
         shopNameTextView = (TextView) rowShop.findViewById(R.id.row_shop__shop_name);
         shopLogoImageView = (ImageView) rowShop.findViewById(R.id.row_shop__shop_logo);
+        rowBackgroundImageView = (ImageView) rowShop.findViewById(R.id.row_shop__shop_background);
     }
 
     public void setShop(Shop shop) {
@@ -39,5 +41,11 @@ public class ShopRowViewHolder extends RecyclerView.ViewHolder {
                 placeholder(R.drawable.shop_placeholder).
                 // networkPolicy(NetworkPolicy.NO_CACHE).
                 into(shopLogoImageView);
+
+        Picasso.with(context.get()).
+                load(shop.getImageUrl()).
+                placeholder(R.drawable.activity_placeholder).
+                // networkPolicy(NetworkPolicy.OFFLINE).
+                        into(rowBackgroundImageView);
     }
 }

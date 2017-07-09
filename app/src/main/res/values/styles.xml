@@ -10,7 +10,7 @@
 
     <style name="activity_main_button_style">
         <item name="android:textAllCaps">false</item>
-        <item name="android:textColor">#CCCCCC</item>
+        <item name="android:textColor">#f1eeee</item>
         <item name="android:background">@color/colorPrimary</item>
     </style>
 

@@ -16,7 +16,7 @@
         android:id="@+id/activity_main__logo"
         android:src="@drawable/app_logo"
         android:layout_width="match_parent"
-        android:layout_height="230dp" />
+        android:layout_height="200dp" />
 
     <Button
         android:id="@+id/activity_main__shops_button"

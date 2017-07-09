@@ -3,13 +3,23 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@android:color/black"
     android:layout_height="100dp">
+
+    <ImageView
+        android:id="@+id/row_shop__shop_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/black"
+        android:alpha="0.6"
+        />
 
     <TextView
         android:id="@+id/row_shop__shop_name"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_centerVertical="true"
+        android:layout_marginLeft="80dp"
         tools:text="Shop"
         style="@style/shop_cell_name_style" />
 
