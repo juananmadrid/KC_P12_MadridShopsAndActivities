@@ -37,7 +37,7 @@ public class GetAllActivitiesInteractorImpl implements GetAllActivitiesInteracto
         this.networkManager.getShopsFromServer(new GetAllShopsManagerCompletion() {
             @Override
             public void completion(@NonNull List<ShopEntity> shopEntities) {
-                Log.d("SHOP", shopEntities.toString());
+                Log.d("ACTIVITY", shopEntities.toString());
                 if (completion != null) {
                     Activities activity = ShopEntityIntoActivitiesMapper.map(shopEntities);
                     completion.completion(activity);

@@ -9,6 +9,7 @@ import android.os.SystemClock;
 import android.util.Log;
 
 public class ShopService extends IntentService {
+
     public static void startRunningService(Context context) {
         Intent intent = ShopService.newIntent(context);
         PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 0);

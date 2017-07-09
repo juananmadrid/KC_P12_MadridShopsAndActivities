@@ -99,11 +99,11 @@ public class ActivitiesListActivity extends AppCompatActivity {
                             .show();
                 } else {
                     map = googleMap;
-                    addDataToMap(googleMap);
 
                     // Chequeamos flag de download ok y cargamos de DB o descargamos de la red
                     checkCacheData();
-                    // addDataToMap(googleMap);
+
+                    addDataToMap(googleMap);
                 }
             }
         });
@@ -127,7 +127,6 @@ public class ActivitiesListActivity extends AppCompatActivity {
         map.getUiSettings().setRotateGesturesEnabled(false);
         map.getUiSettings().setZoomControlsEnabled(true);
         map.setMyLocationEnabled(true);       // Requiere permisos de arriba
-
 
     }
 

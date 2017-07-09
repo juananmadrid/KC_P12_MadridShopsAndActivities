@@ -13,5 +13,6 @@ public class SaveAllActivitiesIntoCacheInteractorImpl implements SaveAllActiviti
 
     @Override
     public void execute(Activities activities, Runnable completion) {
+        manager.execute(activities, completion);
     }
 }

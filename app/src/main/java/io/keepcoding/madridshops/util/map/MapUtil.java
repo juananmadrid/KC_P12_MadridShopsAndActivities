@@ -1,15 +1,24 @@
 package io.keepcoding.madridshops.util.map;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
+import android.widget.ImageView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import io.keepcoding.madridshops.R;
 
 public class MapUtil {
     public static void centerMapInPosition(GoogleMap googleMap, double latitude, double longitude) {
@@ -27,7 +36,9 @@ public class MapUtil {
             final LatLng position = new LatLng(pinnable.getLatitude(), pinnable.getLongitude());
             final String profileImageUrl = pinnable.getPinImageUrl();
 
-            final MarkerOptions marker = new MarkerOptions().position(position).title(pinnable.getPinDescription());
+            final MarkerOptions marker = new MarkerOptions().
+                    position(position).
+                    title(pinnable.getPinDescription());
 
             Marker m = googleMap.addMarker(marker);
             m.setTag(pinnable.getRelatedModelObject());

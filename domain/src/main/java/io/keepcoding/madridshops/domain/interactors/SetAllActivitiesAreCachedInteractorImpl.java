@@ -20,6 +20,7 @@ public class SetAllActivitiesAreCachedInteractorImpl implements SetAllActivities
     public void execute(boolean activitiesSaved) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context.get());
         SharedPreferences.Editor editor = preferences.edit();
+
         editor.putBoolean(SetAllActivitiesAreCachedInteractorImpl.ACTIVITIES_SAVED, activitiesSaved);
 
         editor.commit();
